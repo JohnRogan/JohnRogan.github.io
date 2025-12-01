@@ -1,24 +1,378 @@
-<html>
-
-<!-- TODO: Replace Mr. Miyamoto's name with yours -->
-<h1>The Portfolio of John Rogan</h1>
-
-<h2>Projects</h2>
-
-<!-- TODO: Erase one of these two. Replace the 'href' link below with a link to your WebGL build page. -->
-<ul>
-<li><a href="/Metroid/Metroid.html">Metroid (Unity Remaster)</a></li>
-</ul>
-
-  <p>I mainly was working on the movement mechanics for p1, things tied to the player like the camera movement and getting a good feeling jump / running jump. I also did development work on our new feature the wall jump, and getting that to work was a pain. This project was developed in C# for scripting and using Unity 6 for the Game Engine.</p>
-
-
-<ul>
-<li><a href="https://drive.google.com/file/d/1PO1iD_wmVbPtdk_hj7H3PzlsnWqxQWQ_/view?usp=drive_link">Mystery Room Mania (Unity)</a></li>
-</ul>
-
-  <p>Explore a decrepit facility with a flashlight and your two eyes!</p>
-  <p>Unity, C# used, 3D Puzzle Platformer, I developed this entire game myself!</p>
-
-<!-- TIP: Rename this file "index.html", and it will become the default landing page whenever someone navigates their browser to your domain. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Rogan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --accent-coral: #ff6b5b;
+            --accent-mint: #7affc7;
+            --text-cream: #f5f0e8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--bg-dark);
+            color: var(--text-cream);
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(122, 255, 199, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 107, 91, 0.08) 0%, transparent 50%),
+                var(--bg-dark);
+        }
+        
+        .profile-container {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .profile-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-coral);
+            box-shadow: 
+                0 0 60px rgba(255, 107, 91, 0.3),
+                0 0 120px rgba(122, 255, 199, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            image-rendering: pixelated;
+        }
+        
+        .profile-placeholder {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-coral), var(--accent-mint));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--bg-dark);
+            border: 4px solid var(--accent-coral);
+            box-shadow: 
+                0 0 60px rgba(255, 107, 91, 0.3),
+                0 0 120px rgba(122, 255, 199, 0.1);
+        }
+        
+        .name-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            margin-top: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--text-cream), var(--accent-mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator span {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--accent-mint);
+            border-bottom: 2px solid var(--accent-mint);
+            transform: rotate(45deg);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        .content-section {
+            min-height: 100vh;
+            padding: 8rem 2rem;
+            background: 
+                linear-gradient(180deg, var(--bg-dark) 0%, #0d0d14 50%, var(--bg-dark) 100%);
+        }
+        
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto 6rem;
+        }
+        
+        .section-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.75rem;
+            color: var(--accent-coral);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .about-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: rgba(245, 240, 232, 0.85);
+        }
+        
+        .pages-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .page-card {
+            position: relative;
+            padding: 2.5rem;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+        }
+        
+        .page-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(122, 255, 199, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .page-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-mint);
+            box-shadow: 0 20px 60px rgba(122, 255, 199, 0.15);
+        }
+        
+        .page-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-icon {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-coral);
+        }
+        
+        .card-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card-description {
+            font-size: 1.1rem;
+            color: rgba(245, 240, 232, 0.6);
+            line-height: 1.6;
+        }
+        
+        .card-arrow {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0;
+            background: rgba(122, 255, 199, 0.1);
+            color: var(--accent-mint);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+        }
+        
+        .page-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Card accent colors */
+        .card-eecs { --card-accent: #ff6b5b; }
+        .card-articles { --card-accent: #d4a574; }
+        .card-blog { --card-accent: #7affc7; }
+        .card-projects { --card-accent: #a78bfa; }
+        
+        .page-card:hover .card-title {
+            color: var(--card-accent);
+        }
+        
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: rgba(245, 240, 232, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        footer a {
+            color: var(--accent-mint);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Profile -->
+    <section class="hero-section" id="hero">
+        <div class="profile-container" id="profileContainer">
+            <!-- Replace src with your actual photo -->
+            <div class="profile-placeholder" id="profileImage">JR</div>
+            <!-- 
+            Uncomment and use this instead when you have a photo:
+            <img src="your-photo.jpg" alt="John Rogan" class="profile-image" id="profileImage">
+            -->
+            <h1 class="name-title">John Rogan</h1>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+    
+    <!-- Content Section -->
+    <section class="content-section" id="content">
+        <!-- About Section -->
+        <div class="about-container">
+            <p class="section-label">About</p>
+            <p class="about-text">
+                <!-- Write your about section here -->
+                Welcome to my portfolio. I'm a developer passionate about building interesting things.
+                This space showcases my work, writings, and experiments.
+            </p>
+        </div>
+        
+        <!-- Pages Grid -->
+        <div class="pages-grid">
+            <a href="/eecs494/" class="page-card card-eecs">
+                <div class="card-icon">[GAME]</div>
+                <h2 class="card-title">EECS494</h2>
+                <p class="card-description">Game development course portfolio featuring Unity projects and interactive experiences.</p>
+                <div class="card-arrow">&gt;</div>
+            </a>
+            
+            <a href="/articles/" class="page-card card-articles">
+                <div class="card-icon">[NEWS]</div>
+                <h2 class="card-title">Articles</h2>
+                <p class="card-description">Published writings across Substack, The Michigan Daily, and LinkedIn in classic print style.</p>
+                <div class="card-arrow">&gt;</div>
+            </a>
+            
+            <a href="/blog/" class="page-card card-blog">
+                <div class="card-icon">[TERM]</div>
+                <h2 class="card-title">Blog</h2>
+                <p class="card-description">Personal thoughts and technical notes, terminal style.</p>
+                <div class="card-arrow">&gt;</div>
+            </a>
+            
+            <a href="/projects/" class="page-card card-projects">
+                <div class="card-icon">[DEV]</div>
+                <h2 class="card-title">Personal Projects</h2>
+                <p class="card-description">Independent creations and side projects I've built.</p>
+                <div class="card-arrow">&gt;</div>
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>2025 John Rogan // <a href="https://github.com/JohnRogan" target="_blank">GitHub</a></p>
+    </footer>
+    
+    <script>
+        // Profile fade on scroll
+        const profileContainer = document.getElementById('profileContainer');
+        const heroSection = document.getElementById('hero');
+        const contentSection = document.getElementById('content');
+        
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            const heroHeight = heroSection.offsetHeight;
+            const fadeStart = heroHeight * 0.1;
+            const fadeEnd = heroHeight * 0.6;
+            
+            if (scrollY <= fadeStart) {
+                profileContainer.style.opacity = 1;
+                profileContainer.style.transform = 'translateY(0) scale(1)';
+            } else if (scrollY >= fadeEnd) {
+                profileContainer.style.opacity = 0;
+                profileContainer.style.transform = 'translateY(-50px) scale(0.9)';
+            } else {
+                const progress = (scrollY - fadeStart) / (fadeEnd - fadeStart);
+                const opacity = 1 - progress;
+                const translateY = -50 * progress;
+                const scale = 1 - (0.1 * progress);
+                
+                profileContainer.style.opacity = opacity;
+                profileContainer.style.transform = `translateY(${translateY}px) scale(${scale})`;
+            }
+        }
+        
+        // Add smooth transition
+        profileContainer.style.transition = 'opacity 0.1s ease-out, transform 0.1s ease-out';
+        
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial call
+        
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            heroSection.style.backgroundPositionY = `${scrollY * 0.5}px`;
+        });
+    </script>
+</body>
 </html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EECS494 | John Rogan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-castle: #0c0a15;
+            --bg-stone: #1a1528;
+            --accent-blood: #8b0000;
+            --accent-gold: #c9a227;
+            --accent-purple: #4a1942;
+            --text-parchment: #e8dcc4;
+            --text-dim: #a89b8c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cinzel', serif;
+            background: var(--bg-castle);
+            color: var(--text-parchment);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background effects */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 0% 100%, rgba(74, 25, 66, 0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 100% 100%, rgba(74, 25, 66, 0.2) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Scanline effect */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+        }
+        
+        /* Flickering torchlight effect */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+            75% { opacity: 0.95; }
+        }
+        
+        .torch-glow {
+            animation: flicker 3s infinite;
+        }
+        
+        /* Header */
+        header {
+            position: relative;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-gold);
+            background: linear-gradient(180deg, var(--bg-stone) 0%, var(--bg-castle) 100%);
+        }
+        
+        header::before,
+        header::after {
+            content: '+';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        header::before { left: 2rem; }
+        header::after { right: 2rem; }
+        
+        .back-link {
+            position: absolute;
+            left: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent-gold);
+        }
+        
+        .title-container {
+            display: inline-block;
+        }
+        
+        .main-title {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            text-shadow: 
+                0 0 20px rgba(201, 162, 39, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.05em;
+        }
+        
+        .subtitle {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.3em;
+            margin-top: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .intro-text {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            padding: 2rem;
+            border: 1px solid var(--accent-purple);
+            background: rgba(26, 21, 40, 0.6);
+            position: relative;
+        }
+        
+        .intro-text::before,
+        .intro-text::after {
+            content: '*';
+            position: absolute;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .intro-text::before { top: -0.6rem; left: 50%; transform: translateX(-50%); }
+        .intro-text::after { bottom: -0.6rem; left: 50%; transform: translateX(-50%); }
+        
+        /* Section headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-header::before,
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+        
+        .section-title {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 2rem;
+            color: var(--accent-blood);
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Project cards */
+        .projects-grid {
+            display: grid;
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            position: relative;
+            background: linear-gradient(135deg, var(--bg-stone) 0%, var(--bg-castle) 100%);
+            border: 2px solid var(--accent-purple);
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            pointer-events: none;
+        }
+        
+        .project-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+            box-shadow: 
+                0 10px 40px rgba(139, 0, 0, 0.3),
+                0 0 60px rgba(201, 162, 39, 0.1);
+        }
+        
+        .project-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-parchment);
+        }
+        
+        .project-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .project-title a::after {
+            content: ' >';
+            font-size: 0.9rem;
+            opacity: 0.6;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .project-title a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .project-description {
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .tech-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(139, 0, 0, 0.3);
+            border: 1px solid var(--accent-blood);
+            color: var(--text-parchment);
+            letter-spacing: 0.05em;
+        }
+        
+        /* Role section */
+        .role-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--accent-purple);
+        }
+        
+        .role-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .role-text {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Decorative elements */
+        .torch {
+            position: fixed;
+            bottom: 2rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--accent-gold);
+            opacity: 0.6;
+        }
+        
+        .torch-left { left: 2rem; }
+        .torch-right { right: 2rem; }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--accent-purple);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+        }
+        
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Pixel border corners */
+        .pixel-corner {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--accent-gold);
+        }
+        
+        .pixel-corner.top-left { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+        .pixel-corner.top-right { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .pixel-corner.bottom-left { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+        .pixel-corner.bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.5rem; }
+            .back-link { 
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+            header::before, header::after { display: none; }
+            .torch { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="back-link">< Return</a>
+        <div class="title-container">
+            <h1 class="main-title torch-glow">EECS 494</h1>
+            <p class="subtitle">Game Development Portfolio</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="intro-text">
+            A chronicle of game development projects created for EECS 494. 
+            Each project represents a journey through the craft of interactive experiences, 
+            built with passion and forged in code.
+        </div>
+        
+        <div class="section-header">
+            <h2 class="section-title">Projects</h2>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Project 1: Metroid -->
+            <article class="project-card">
+                <div class="pixel-corner top-left"></div>
+                <div class="pixel-corner top-right"></div>
+                <div class="pixel-corner bottom-left"></div>
+                <div class="pixel-corner bottom-right"></div>
+                
+                <span class="project-number">PROJECT I</span>
+                <h3 class="project-title">
+                    <a href="/Metroid/Metroid.html">Metroid (Unity Remaster)</a>
+                </h3>
+                <p class="project-description">
+                    A faithful recreation of the classic Metroid experience, reimagined in Unity. 
+                    This project focuses on capturing the essence of exploration and tight platforming 
+                    that defined a genre.
+                </p>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Unity 6</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">2D Platformer</span>
+                </div>
+                
+                <div class="role-section">
+                    <p class="role-label">MY CONTRIBUTIONS</p>
+                    <p class="role-text">
+                        I mainly worked on the movement mechanics, focusing on the player experience—
+                        camera movement and achieving a satisfying jump and running jump feel. 
+                        I also developed the wall jump feature, which proved to be quite the challenge 
+                        to get right.
+                    </p>
+                </div>
+            </article>
+            
+            <!-- Project 2: Mystery Room Mania -->
+            <article class="project-card">
+                <div class="pixel-corner top-left"></div>
+                <div class="pixel-corner top-right"></div>
+                <div class="pixel-corner bottom-left"></div>
+                <div class="pixel-corner bottom-right"></div>
+                
+                <span class="project-number">PROJECT II</span>
+                <h3 class="project-title">
+                    <a href="https://drive.google.com/file/d/1PO1iD_wmVbPtdk_hj7H3PzlsnWqxQWQ_/view?usp=drive_link">Mystery Room Mania</a>
+                </h3>
+                <p class="project-description">
+                    Explore a decrepit facility with only a flashlight and your wits. 
+                    A tense 3D puzzle platformer that challenges players to navigate 
+                    through darkness and solve environmental puzzles.
+                </p>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Unity</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">3D Puzzle Platformer</span>
+                </div>
+                
+                <div class="role-section">
+                    <p class="role-label">MY CONTRIBUTIONS</p>
+                    <p class="role-text">
+                        Solo development project—I designed and implemented the entire game myself, 
+                        from concept to completion. This includes level design, puzzle mechanics, 
+                        lighting systems, and player controls.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <div class="torch torch-left torch-glow">[*]</div>
+    <div class="torch torch-right torch-glow">[*]</div>
+    
+    <footer>
+        <p>EECS 494 // Game Development // <a href="/">Back to Main</a></p>
+    </footer>
+</body>
+</html>

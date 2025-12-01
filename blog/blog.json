@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Hello, World!",
+    "content": "Welcome to my terminal blog. This is where I'll share thoughts, technical notes, and random musings.\n\nFeel free to explore and check back for updates.",
+    "date": "2025-10-18T10:30:00"
+  },
+  {
+    "title": "Setting Up This Blog",
+    "content": "I wanted a blog that felt different from the typical Medium or WordPress setup. Something that reflected my personality as a developer.\n\nSo I built this terminal-themed blog. It's simple, it's fast, and it doesn't require any backend or database. Just a JSON file that I can edit and push to GitHub.\n\nThe beauty of static sites.",
+    "date": "2025-10-12T14:00:00"
+  }
+]
