@@ -230,6 +230,13 @@
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
             opacity: 0;
             transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .project-card > * {
+            position: relative;
+            z-index: 1;
         }
         
         .project-card:hover {
@@ -280,6 +287,16 @@
             border-radius: 6px;
             font-size: 0.75rem;
             color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .project-links a:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+            color: #fff;
+        }
+        
+        .project-title a:hover {
+            color: #38bdf8;
         }
         
         .project-link {
@@ -409,32 +426,36 @@
             </div>
             
             <div class="projects-grid">
-                <!-- Empty state - will be replaced when projects are added -->
-                <div class="empty-state">
-                    <div class="empty-icon">[...]</div>
-                    <h3 class="empty-title">Coming Soon</h3>
-                    <p class="empty-text">Personal projects will be showcased here.</p>
-                </div>
-                
-                <!-- Example project card template (commented out):
+                <!-- Call Quality Dashboard -->
                 <article class="project-card">
-                    <a href="#" class="project-link" target="_blank">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </a>
                     <div class="project-icon">[01]</div>
-                    <h3 class="project-title">Project Name</h3>
+                    <h3 class="project-title"><a href="https://github.com/JohnRogan/call-quality-dashboard" target="_blank" style="color: inherit; text-decoration: none; transition: color 0.2s;">Call Quality Dashboard</a></h3>
                     <p class="project-description">
-                        Brief description of what this project does and why it's interesting.
+                        A real-time monitoring and alerting system for Genesys Cloud call quality metrics. The Flask exporter collects telephony metrics (MOS, jitter, packet loss) from the Genesys Cloud API, exposes Prometheus metrics, and feeds Grafana dashboards with automated alerting. Supports mock data generation for testing and is deployed on AWS EC2 using Docker Compose. Includes a CI/CD pipeline with GitHub Actions for automated builds and Octopus Deploy for deployment orchestration, including post-deployment scripts for Grafana alert rule provisioning.
+                    </p>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                        <a href="http://3.16.164.78:3000/" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            Grafana Dashboard
+                        </a>
+                        <a href="http://3.16.164.78:5001/metrics" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            Exporter Metrics
+                        </a>
+                    </div>
+                    <p class="project-description" style="font-size: 0.85rem; margin-bottom: 1rem;">
+                        <strong style="color: rgba(255, 255, 255, 0.7);">Tech Stack & Skills:</strong> Python 3.12, Flask, Gunicorn, Prometheus, Grafana, Docker, AWS EC2. Demonstrates microservices architecture, custom Prometheus exporter development, RESTful API design, third-party API integration (OAuth2), infrastructure as code with Docker Compose, time-series data visualization, automated provisioning, and production deployment with container orchestration and monitoring.
                     </p>
                     <div class="project-tags">
-                        <span class="project-tag">React</span>
-                        <span class="project-tag">TypeScript</span>
-                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Flask</span>
+                        <span class="project-tag">Prometheus</span>
+                        <span class="project-tag">Grafana</span>
+                        <span class="project-tag">Docker</span>
+                        <span class="project-tag">AWS EC2</span>
+                        <span class="project-tag">CI/CD</span>
                     </div>
                 </article>
-                -->
             </div>
         </section>
     </main>
