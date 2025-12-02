@@ -1,12 +1,28 @@
+
 [
+  {
+    "title": "Setting Up This Blog",
+    "content": "I wanted a blog that felt different from the typical Medium or WordPress setup. Something that reflected my personality as a developer.\n\nSo I built this terminal-themed blog. It's simple, it's fast, and it doesn't require any backend or database. Just a JSON file that I can edit and push to GitHub.\n\nThe beauty of static sites.",
+    "date": "2025-10-12T14:00:00"
+  },
   {
     "title": "Hello, World!",
     "content": "Welcome to my terminal blog. This is where I'll share thoughts, technical notes, and random musings.\n\nFeel free to explore and check back for updates.",
     "date": "2025-10-18T10:30:00"
   },
   {
-    "title": "Setting Up This Blog",
-    "content": "I wanted a blog that felt different from the typical Medium or WordPress setup. Something that reflected my personality as a developer.\n\nSo I built this terminal-themed blog. It's simple, it's fast, and it doesn't require any backend or database. Just a JSON file that I can edit and push to GitHub.\n\nThe beauty of static sites.",
-    "date": "2025-10-12T14:00:00"
+    "title": "Happy Halloween",
+    "content": "I repeated the same costume from 2023, does dressing up as the future Pirate King ever get old?",
+    "date": "2025-10-31T00:00:00"
+  },
+  {
+    "title": "Going Home",
+    "content": "Grateful for the Michigan Flyer, we love public transportation, DC HERE WE COME!",
+    "date": "2025-11-21T00:00:00"
+  },
+  {
+    "title": "Happy Thanksgiving",
+    "content": "I'm thankful for my friends and family. I owe so muchto the people who have gotten me to where I am today! <3",
+    "date": "2025-11-27T00:00:00"
   }
 ]

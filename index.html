@@ -180,6 +180,19 @@
             text-transform: uppercase;
         }
         
+        .photo-credit {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: rgba(245, 240, 232, 0.5);
+            z-index: 10;
+            padding: 0.5rem 0.75rem;
+            background: rgba(10, 10, 15, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
         .scroll-arrow {
             width: 24px;
             height: 24px;
@@ -418,11 +431,9 @@
         
         <div class="profile-container" id="profileContainer">
             <!-- Replace src with your actual photo -->
-            <div class="profile-placeholder" id="profileImage">JR</div>
-            <!-- 
-            Uncomment and use this instead when you have a photo:
-            <img src="your-photo.jpg" alt="John Rogan" class="profile-image" id="profileImage">
-            -->
+            <!--<div class="profile-placeholder" id="profileImage">JR</div>-->
+            <img src="assets/profile/profile.jpg" alt="John Rogan" class="profile-image" id="profileImage">
+
             <h1 class="name-title">John Rogan</h1>
             
             <!-- Social Links -->
@@ -446,6 +457,8 @@
             <span>Scroll</span>
             <div class="scroll-arrow"></div>
         </div>
+        
+        <div class="photo-credit">photos taken by me :)</div>
     </section>
     
     <!-- Content Section -->
@@ -517,8 +530,10 @@
         // Background slideshow configuration
         // Add your image filenames here (place images in /assets/backgrounds/)
         const backgroundImages = [
-            // Example: 'photo1.jpg', 'photo2.jpg', 'sunset.png'
-            // Add your images here
+            'CentPark.jpg',
+            'HuroRive.jpg',
+            'LakeLois.jpg',
+            'MichStad.jpg'
         ];
         
         let currentSlide = 0;

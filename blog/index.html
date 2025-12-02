@@ -327,9 +327,8 @@
             <!-- Welcome block -->
             <div class="welcome-block">
                 <p class="welcome-text">
-                    Welcome to my <span class="highlight">terminal blog</span>. 
-                    Personal thoughts, technical notes, and random musings.
-                    <br>Type <span class="highlight">'help'</span> for navigation commands.
+                    Welcome to my <span class="highlight">terminal blog</span>. <br>
+                    Contains: personal thoughts & technical notes.
                 </p>
             </div>
             
@@ -403,7 +402,9 @@
             const postCount = document.getElementById('post-count');
             
             try {
-                const response = await fetch('/blog/blog.json');
+                const response = await fetch('/blog/blog.json', {
+                    cache: 'no-cache'
+                });
                 const posts = await response.json();
                 
                 if (posts.length === 0) {
