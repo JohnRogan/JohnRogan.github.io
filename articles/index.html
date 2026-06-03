@@ -16,7 +16,7 @@
             --ink-black: #1a1a1a;
             --ink-faded: #4a4a4a;
             --accent-red: #8b2323;
-            --accent-maize: #FFCB05;
+            --accent-md-blue: #344161;
         }
         
         * {
@@ -94,6 +94,16 @@
             font-style: italic;
             font-size: 0.9rem;
             color: var(--ink-faded);
+        }
+        
+        .masthead-disclaimer {
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-faded);
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Social links header */
@@ -215,7 +225,23 @@
         }
         
         .platform-indicator.michigandaily {
-            border-color: transparent var(--accent-maize) transparent transparent;
+            border-color: transparent var(--accent-md-blue) transparent transparent;
+        }
+        
+        .platform-indicator.editorial {
+            border-color: transparent var(--accent-md-blue) transparent transparent;
+        }
+
+        .platform-indicator.editorial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -40px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 15px 15px 0;
+            border-color: transparent white transparent transparent;
         }
         
         .platform-label {
@@ -302,30 +328,34 @@
             text-decoration: underline;
         }
         
-        /* Legend */
-        .legend {
+        /* Filter Menu */
+        .filter-menu {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            font-size: 0.75rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            border-top: 1px solid var(--ink-faded);
+            border-bottom: 1px solid var(--ink-faded);
+            padding: 0.75rem 1rem;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-style: italic;
             color: var(--ink-faded);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.25rem 0.5rem;
         }
         
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--ink-black);
+            font-weight: 600;
         }
-        
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-        }
-        
-        .legend-dot.substack { background: #ff6719; }
-        .legend-dot.michigandaily { background: var(--accent-maize); }
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -355,6 +385,7 @@
             <span class="ornament-line"></span>
         </div>
         <p class="masthead-date">Writings & Musings of John Rogan</p>
+        <p class="masthead-disclaimer">*Note: For Michigan Daily editorials, I served as a contributor and did not write them in full.</p>
     </header>
     
     <nav class="social-header">
@@ -373,15 +404,11 @@
             <h2 class="section-title">Recent Publications</h2>
         </div>
         
-        <div class="legend">
-            <div class="legend-item">
-                <span class="legend-dot substack"></span>
-                <span>Substack</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-dot michigandaily"></span>
-                <span>Michigan Daily</span>
-            </div>
+        <div class="filter-menu">
+            <button class="filter-btn active" onclick="filterArticles('all', this)">All Writings</button>
+            <button class="filter-btn" onclick="filterArticles('substack', this)">Substack</button>
+            <button class="filter-btn" onclick="filterArticles('michigandaily', this)">Michigan Daily</button>
+            <button class="filter-btn" onclick="filterArticles('editorial', this)">MD Editorials</button>
         </div>
         
         <div id="articles-container" class="articles-container">
@@ -428,6 +455,24 @@
             }
         }
         
+        function filterArticles(platform, btnElement) {
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+
+            // Filter the cards
+            const cards = document.querySelectorAll('.article-card');
+            cards.forEach(card => {
+                if (platform === 'all' || card.dataset.platform === platform) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
         function createArticleCard(article) {
             const card = document.createElement('a');
             card.href = article.link;
@@ -442,14 +487,24 @@
                 day: 'numeric'
             });
             
-            // Determine platform from link (only substack and michigandaily now)
-            let platform = 'substack';
+            // Determine platform from link
+            let platformClass = 'substack';
+            let platformData = 'substack';
+            
             if (article.link.includes('michigandaily.com')) {
-                platform = 'michigandaily';
+                if (article.link.includes('/editorials/')) {
+                    platformClass = 'editorial';
+                    platformData = 'editorial';
+                } else {
+                    platformClass = 'michigandaily';
+                    platformData = 'michigandaily';
+                }
             }
             
+            card.dataset.platform = platformData;
+            
             card.innerHTML = `
-                <div class="platform-indicator ${platform}">
+                <div class="platform-indicator ${platformClass}">
                     <span class="platform-label"></span>
                 </div>
                 <p class="article-date">${formattedDate}</p>
