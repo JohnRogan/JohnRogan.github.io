@@ -434,15 +434,19 @@
                     <p class="project-description">
                         A real-time monitoring and alerting system for Genesys Cloud call quality metrics. The Flask exporter collects telephony metrics (MOS, jitter, packet loss) from the Genesys Cloud API, exposes Prometheus metrics, and feeds Grafana dashboards with automated alerting. Supports mock data generation for testing and is deployed on AWS EC2 using Docker Compose. Includes a CI/CD pipeline with GitHub Actions for automated builds and Octopus Deploy for deployment orchestration, including post-deployment scripts for Grafana alert rule provisioning.
                     </p>
-                    <div class="project-links" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-                        <a href="http://3.16.164.78:3000/" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; margin-bottom: 1rem; background: rgba(234, 179, 8, 0.08); border: 1px solid rgba(234, 179, 8, 0.25); border-radius: 8px; font-size: 0.8rem; color: rgba(234, 179, 8, 0.9);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <span>The hosting instances for this project are not currently running. Live links below are unavailable.</span>
+                    </div>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-bottom: 1.5rem; opacity: 0.4; pointer-events: none;">
+                        <span style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                             Grafana Dashboard
-                        </a>
-                        <a href="http://3.16.164.78:5001/metrics" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;">
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgba(255, 255, 255, 0.8); font-size: 0.85rem;">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                             Exporter Metrics
-                        </a>
+                        </span>
                     </div>
                     <p class="project-description" style="font-size: 0.85rem; margin-bottom: 1rem;">
                         <strong style="color: rgba(255, 255, 255, 0.7);">Tech Stack & Skills:</strong> Python 3.12, Flask, Gunicorn, Prometheus, Grafana, Docker, AWS EC2. Demonstrates microservices architecture, custom Prometheus exporter development, RESTful API design, third-party API integration (OAuth2), infrastructure as code with Docker Compose, time-series data visualization, automated provisioning, and production deployment with container orchestration and monitoring.
