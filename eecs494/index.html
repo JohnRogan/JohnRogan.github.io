@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EECS494 | John Rogan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -99,22 +98,26 @@
         header::before { left: 2rem; }
         header::after { right: 2rem; }
         
-        .back-link {
-            position: absolute;
-            left: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
+        .home-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1001;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: color 0.3s;
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            background: var(--bg-stone);
+            border: 1px solid var(--accent-purple);
+            text-decoration: none;
+            transition: all 0.3s;
         }
         
-        .back-link:hover {
+        .home-btn:hover {
             color: var(--accent-gold);
+            border-color: var(--accent-gold);
         }
         
         .title-container {
@@ -302,6 +305,21 @@
             line-height: 1.6;
         }
         
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            border: 2px dashed var(--accent-purple);
+            color: var(--text-dim);
+        }
+        
+        .empty-state h3 {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.75rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        
         /* Decorative elements */
         .torch {
             position: fixed;
@@ -335,6 +353,14 @@
             text-decoration: underline;
         }
         
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
         /* Pixel border corners */
         .pixel-corner {
             position: absolute;
@@ -351,12 +377,12 @@
         /* Responsive */
         @media (max-width: 768px) {
             .main-title { font-size: 2.5rem; }
-            .back-link { 
-                position: relative;
-                left: 0;
-                top: 0;
-                transform: none;
-                margin-bottom: 1rem;
+            header { padding-top: 4.5rem; }
+            .home-btn {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
             header::before, header::after { display: none; }
             .torch { display: none; }
@@ -364,8 +390,9 @@
     </style>
 </head>
 <body>
+    <a href="/" class="home-btn">&larr; Return Home</a>
+    
     <header>
-        <a href="/" class="back-link">< Return</a>
         <div class="title-container">
             <h1 class="main-title torch-glow">EECS 494</h1>
             <p class="subtitle">Game Development Portfolio</p>
@@ -383,109 +410,13 @@
             <h2 class="section-title">Projects</h2>
         </div>
         
-        <div class="projects-grid">
-            <!-- Project 1: Metroid -->
-            <article class="project-card">
-                <div class="pixel-corner top-left"></div>
-                <div class="pixel-corner top-right"></div>
-                <div class="pixel-corner bottom-left"></div>
-                <div class="pixel-corner bottom-right"></div>
-                
-                <span class="project-number">PROJECT I</span>
-                <h3 class="project-title">
-                    <a href="/Metroid/Metroid.html">Metroid (Unity Remaster)</a>
-                </h3>
-                <p class="project-description">
-                    A faithful recreation of the classic Metroid experience, reimagined in Unity. 
-                    This project focuses on capturing the essence of exploration and tight platforming 
-                    that defined a genre.
-                </p>
-                
-                <div class="tech-tags">
-                    <span class="tech-tag">Unity 6</span>
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">2D Platformer</span>
-                </div>
-                
-                <div class="role-section">
-                    <p class="role-label">MY CONTRIBUTIONS</p>
-                    <p class="role-text">
-                        I mainly worked on the movement mechanics, focusing on the player experience—
-                        camera movement and achieving a satisfying jump and running jump feel. 
-                        I also developed the wall jump feature, which proved to be quite the challenge 
-                        to get right.
-                    </p>
-                </div>
-            </article>
-            
-            <!-- Project 2: Mystery Room Mania -->
-            <article class="project-card">
-                <div class="pixel-corner top-left"></div>
-                <div class="pixel-corner top-right"></div>
-                <div class="pixel-corner bottom-left"></div>
-                <div class="pixel-corner bottom-right"></div>
-                
-                <span class="project-number">PROJECT II</span>
-                <h3 class="project-title">
-                    <a href="https://drive.google.com/file/d/1PO1iD_wmVbPtdk_hj7H3PzlsnWqxQWQ_/view?usp=drive_link">Mystery Room Mania</a>
-                </h3>
-                <p class="project-description">
-                    Explore a decrepit facility with only a flashlight and your wits. 
-                    A tense 3D puzzle platformer that challenges players to navigate 
-                    through darkness and solve environmental puzzles.
-                </p>
-                
-                <div class="tech-tags">
-                    <span class="tech-tag">Unity 6</span>
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">3D Puzzle Platformer</span>
-                </div>
-                
-                <div class="role-section">
-                    <p class="role-label">MY CONTRIBUTIONS</p>
-                    <p class="role-text">
-                        Solo development project—I designed and implemented the entire game myself, 
-                        from concept to completion. This includes level design, puzzle mechanics, 
-                        lighting systems, and player controls.
-                    </p>
-                </div>
-            </article>
-
-
-            <!-- Project 3: Split Heist -->
-            <article class="project-card">
-                <div class="pixel-corner top-left"></div>
-                <div class="pixel-corner top-right"></div>
-                <div class="pixel-corner bottom-left"></div>
-                <div class="pixel-corner bottom-right"></div>
-                
-                <span class="project-number">PROJECT III</span>
-                <h3 class="project-title">
-                    <a href="/splitheist/splitheist.html">Split Heist</a>
-                </h3>
-                <p class="project-description">
-                    A Puzzle Platformer where you play as a thief trying to steal valuable technology from a secure facility. 
-                    Navigate the dangerous Aetherium laboratory and solve environmental puzzles to make your escape.
-                    Be warned, Aetherium is a shady organization and they will not take kindly to your intrusion.
-                </p>
-                
-                <div class="tech-tags">
-                    <span class="tech-tag">Unity 6</span>
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">3D Modeling</span>
-                    <span class="tech-tag">Game Design</span>
-                </div>
-                
-                <div class="role-section">
-                    <p class="role-label">MY CONTRIBUTIONS</p>
-                    <p class="role-text">
-                        Split Heist was the final project for 494. It was a colloborative project, built by a team of 5 developers.
-                        Split Heist took a lot of inspiration from my previous game Mystery Room Mania, and I wanted to create a game that was more polished and professional.
-                        I was primarily responsible for the game design, level design, and puzzle mechanics.
-                        This project also taught me the creative aspects of game development, working with composers and artists to create a cohesive game.
-                    </p>
-                </div>
-            </article>
+        <div id="games-container" class="projects-grid">
+            <!-- Games will be loaded here via JavaScript -->
+        </div>
+        
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <h3>The Archives Are Empty</h3>
+            <p>games.json is empty or could not be loaded.</p>
         </div>
     </main>
     
@@ -493,7 +424,77 @@
     <div class="torch torch-right torch-glow">[*]</div>
     
     <footer>
-        <p>EECS 494 // Game Development // <a href="/">Back to Main</a></p>
+        <nav class="footer-nav">
+            <a href="/">Home</a>
+            <a href="/projects/">Projects</a>
+            <a href="/eecs494/">EECS494</a>
+            <a href="/blog/">Blog</a>
+            <a href="/articles/">Articles</a>
+            <a href="https://github.com/JohnRogan" target="_blank">GitHub</a>
+        </nav>
+        <p>EECS 494 // Game Development // &copy; <span class="footer-year">2026</span> John Rogan</p>
     </footer>
+    
+    <script>
+        // Fetch and render games from JSON
+        async function loadGames() {
+            const container = document.getElementById('games-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            try {
+                const response = await fetch('/eecs494/games.json', {
+                    cache: 'no-cache'
+                });
+                const games = await response.json();
+                
+                if (games.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                games.forEach(game => {
+                    container.appendChild(createGameCard(game));
+                });
+            } catch (error) {
+                console.error('Error loading games:', error);
+                emptyState.style.display = 'block';
+            }
+        }
+        
+        function createGameCard(game) {
+            const card = document.createElement('article');
+            card.className = 'project-card';
+            
+            const tags = (game.tags || [])
+                .map(tag => `<span class="tech-tag">${tag}</span>`)
+                .join('');
+            
+            card.innerHTML = `
+                <div class="pixel-corner top-left"></div>
+                <div class="pixel-corner top-right"></div>
+                <div class="pixel-corner bottom-left"></div>
+                <div class="pixel-corner bottom-right"></div>
+                
+                <span class="project-number">${game.number}</span>
+                <h3 class="project-title">
+                    <a href="${game.link}">${game.title}</a>
+                </h3>
+                <p class="project-description">${game.description}</p>
+                
+                <div class="tech-tags">${tags}</div>
+                
+                <div class="role-section">
+                    <p class="role-label">MY CONTRIBUTIONS</p>
+                    <p class="role-text">${game.contributions}</p>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadGames);
+        
+        document.querySelector('.footer-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>

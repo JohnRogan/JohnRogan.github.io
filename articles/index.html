@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles | John Rogan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -43,19 +42,28 @@
             background: var(--paper-cream);
         }
         
-        .back-home {
-            position: absolute;
-            left: 2rem;
-            top: 2rem;
-            color: var(--ink-faded);
-            text-decoration: none;
-            font-size: 0.9rem;
+        .home-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
             font-style: italic;
-            transition: color 0.3s;
+            color: var(--ink-faded);
+            background: var(--paper-cream);
+            border: 1px solid var(--ink-faded);
+            text-decoration: none;
+            transition: all 0.3s;
         }
         
-        .back-home:hover {
+        .home-btn:hover {
             color: var(--ink-black);
+            border-color: var(--ink-black);
+            box-shadow: 3px 3px 0 var(--ink-faded);
         }
         
         .masthead-title {
@@ -328,6 +336,15 @@
             text-decoration: underline;
         }
         
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
         /* Filter Menu */
         .filter-menu {
             display: flex;
@@ -359,25 +376,26 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            .masthead { padding-top: 4.5rem; }
             .masthead-title { font-size: 2.5rem; }
             .social-header { 
                 flex-direction: column;
                 gap: 0.5rem;
                 align-items: center;
             }
-            .back-home {
-                position: relative;
-                left: 0;
-                top: 0;
-                display: block;
-                margin-bottom: 1rem;
+            .home-btn {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
+    <a href="/" class="home-btn">&larr; Return Home</a>
+    
     <header class="masthead">
-        <a href="/" class="back-home">Return to Portfolio</a>
         <h1 class="masthead-title">The Dispatch</h1>
         <div class="masthead-ornament">
             <span class="ornament-line"></span>
@@ -422,7 +440,15 @@
     </main>
     
     <footer>
-        <p>The Dispatch - Est. 2025 | <a href="/">Return to Portfolio</a></p>
+        <nav class="footer-nav">
+            <a href="/">Home</a>
+            <a href="/projects/">Projects</a>
+            <a href="/eecs494/">EECS494</a>
+            <a href="/blog/">Blog</a>
+            <a href="/articles/">Articles</a>
+            <a href="https://github.com/JohnRogan" target="_blank">GitHub</a>
+        </nav>
+        <p>The Dispatch - Est. 2025 | &copy; <span class="footer-year">2026</span> John Rogan</p>
     </footer>
     
     <script>
@@ -517,6 +543,9 @@
         
         // Load articles on page load
         document.addEventListener('DOMContentLoaded', loadArticles);
+        
+        // Dynamic footer year
+        document.querySelector('.footer-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

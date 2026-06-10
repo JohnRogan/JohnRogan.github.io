@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Rogan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -345,6 +344,14 @@
             text-decoration: underline;
         }
         
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
         /* Resume Modal */
         .modal-overlay {
             position: fixed;
@@ -511,7 +518,15 @@
     </section>
     
     <footer>
-        <p>2025 John Rogan // <a href="https://github.com/JohnRogan" target="_blank">GitHub</a></p>
+        <nav class="footer-nav">
+            <a href="/">Home</a>
+            <a href="/projects/">Projects</a>
+            <a href="/eecs494/">EECS494</a>
+            <a href="/blog/">Blog</a>
+            <a href="/articles/">Articles</a>
+            <a href="https://github.com/JohnRogan" target="_blank">GitHub</a>
+        </nav>
+        <p>&copy; <span class="footer-year">2026</span> John Rogan</p>
     </footer>
     
     <!-- Resume Modal -->
@@ -574,6 +589,9 @@
         
         // Initialize slideshow on page load
         document.addEventListener('DOMContentLoaded', initSlideshow);
+        
+        // Dynamic footer year
+        document.querySelector('.footer-year').textContent = new Date().getFullYear();
         
         // Profile fade on scroll
         const profileContainer = document.getElementById('profileContainer');

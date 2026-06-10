@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Call Quality Dashboard",
+    "github": "https://github.com/JohnRogan/call-quality-dashboard",
+    "description": "A real-time monitoring and alerting system for Genesys Cloud call quality metrics. The Flask exporter collects telephony metrics (MOS, jitter, packet loss) from the Genesys Cloud API, exposes Prometheus metrics, and feeds Grafana dashboards with automated alerting. Supports mock data generation for testing and is deployed on AWS EC2 using Docker Compose. Includes a CI/CD pipeline with GitHub Actions for automated builds and Octopus Deploy for deployment orchestration, including post-deployment scripts for Grafana alert rule provisioning.",
+    "statusNote": "The hosting instances for this project are not currently running. Live links below are unavailable.",
+    "links": [
+      { "label": "Grafana Dashboard", "url": null },
+      { "label": "Exporter Metrics", "url": null }
+    ],
+    "skills": "Python 3.12, Flask, Gunicorn, Prometheus, Grafana, Docker, AWS EC2. Demonstrates microservices architecture, custom Prometheus exporter development, RESTful API design, third-party API integration (OAuth2), infrastructure as code with Docker Compose, time-series data visualization, automated provisioning, and production deployment with container orchestration and monitoring.",
+    "tags": ["Python", "Flask", "Prometheus", "Grafana", "Docker", "AWS EC2", "CI/CD"]
+  }
+]

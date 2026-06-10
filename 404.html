@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | John Rogan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --accent-coral: #ff6b5b;
+            --accent-mint: #7affc7;
+            --text-cream: #f5f0e8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'VT323', monospace;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(122, 255, 199, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 107, 91, 0.08) 0%, transparent 50%),
+                var(--bg-dark);
+            color: var(--text-cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            color: var(--text-cream);
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .home-btn:hover {
+            background: rgba(122, 255, 199, 0.1);
+            border-color: var(--accent-mint);
+            transform: translateY(-2px);
+        }
+        
+        .error-code {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(4rem, 15vw, 8rem);
+            background: linear-gradient(135deg, var(--accent-coral), var(--accent-mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            animation: glitch 3s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 92%, 100% { transform: translate(0); }
+            93% { transform: translate(-3px, 2px); }
+            95% { transform: translate(3px, -2px); }
+            97% { transform: translate(-2px, -1px); }
+        }
+        
+        .error-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--accent-coral);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+        
+        .error-text {
+            font-size: 1.4rem;
+            color: rgba(245, 240, 232, 0.7);
+            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+        
+        .continue-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--bg-dark);
+            background: var(--accent-mint);
+            border: 2px solid var(--accent-mint);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .continue-btn:hover {
+            background: transparent;
+            color: var(--accent-mint);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(122, 255, 199, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(122, 255, 199, 0); }
+        }
+        
+        @media (max-width: 768px) {
+            .home-btn {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 0.9rem;
+                font-size: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-btn">&larr; Return Home</a>
+    
+    <h1 class="error-code">404</h1>
+    <p class="error-title">GAME OVER</p>
+    <p class="error-text">
+        The page you're looking for doesn't exist, was moved, or never spawned in the first place.
+    </p>
+    <a href="/" class="continue-btn">CONTINUE? &gt; YES</a>
+</body>
+</html>

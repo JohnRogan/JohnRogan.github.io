@@ -1,0 +1,26 @@
+[
+  {
+    "number": "PROJECT I",
+    "title": "Metroid (Unity Remaster)",
+    "link": "/Metroid/Metroid.html",
+    "description": "A faithful recreation of the classic Metroid experience, reimagined in Unity. This project focuses on capturing the essence of exploration and tight platforming that defined a genre.",
+    "tags": ["Unity 6", "C#", "2D Platformer"],
+    "contributions": "I mainly worked on the movement mechanics, focusing on the player experience\u2014 camera movement and achieving a satisfying jump and running jump feel. I also developed the wall jump feature, which proved to be quite the challenge to get right."
+  },
+  {
+    "number": "PROJECT II",
+    "title": "Mystery Room Mania",
+    "link": "https://drive.google.com/file/d/1PO1iD_wmVbPtdk_hj7H3PzlsnWqxQWQ_/view?usp=drive_link",
+    "description": "Explore a decrepit facility with only a flashlight and your wits. A tense 3D puzzle platformer that challenges players to navigate through darkness and solve environmental puzzles.",
+    "tags": ["Unity 6", "C#", "3D Puzzle Platformer"],
+    "contributions": "Solo development project\u2014I designed and implemented the entire game myself, from concept to completion. This includes level design, puzzle mechanics, lighting systems, and player controls."
+  },
+  {
+    "number": "PROJECT III",
+    "title": "Split Heist",
+    "link": "/splitheist/splitheist.html",
+    "description": "A Puzzle Platformer where you play as a thief trying to steal valuable technology from a secure facility. Navigate the dangerous Aetherium laboratory and solve environmental puzzles to make your escape. Be warned, Aetherium is a shady organization and they will not take kindly to your intrusion.",
+    "tags": ["Unity 6", "C#", "3D Modeling", "Game Design"],
+    "contributions": "Split Heist was the final project for 494. It was a colloborative project, built by a team of 5 developers. Split Heist took a lot of inspiration from my previous game Mystery Room Mania, and I wanted to create a game that was more polished and professional. I was primarily responsible for the game design, level design, and puzzle mechanics. This project also taught me the creative aspects of game development, working with composers and artists to create a cohesive game."
+  }
+]
