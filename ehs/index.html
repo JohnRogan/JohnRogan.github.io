@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equity Health Systems | John Rogan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --orange: #c2410c;
+            --orange-mid: #f97316;
+            --orange-light: #fb923c;
+            --bg: #ffffff;
+            --bg-alt: #f9fafb;
+            --border: #e5e7eb;
+            --charcoal: #1c1c1c;
+            --muted: #6b7280;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section { padding: 80px 0; }
+        .section-alt { padding: 80px 0; background: var(--bg-alt); }
+
+        .eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--orange-mid);
+            display: block;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.6rem;
+            color: var(--orange);
+            margin-bottom: 16px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .section-sub {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 48px;
+        }
+
+        /* Return home button (standard across subpages) */
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--muted);
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .home-btn:hover {
+            color: var(--orange);
+            border-color: var(--orange-light);
+        }
+
+        /* NAV */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 24px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        .nav-logo:hover { color: var(--orange-mid); }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--orange); }
+
+        .btn {
+            background: var(--orange);
+            color: #ffffff !important;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover { background: var(--orange-mid); }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--orange-mid);
+            background: rgba(249, 115, 22, 0.08);
+            padding: 6px 14px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            line-height: 1.15;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--orange-mid); }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .hero-meta-row {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+
+        .hero-meta-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            min-width: 90px;
+        }
+
+        .hero-meta-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .hero-meta-value a {
+            color: var(--orange);
+            text-decoration: none;
+            border-bottom: 2px solid var(--orange-light);
+            padding-bottom: 1px;
+        }
+
+        .private-badge {
+            display: inline-block;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* Hero schedule illustration */
+        .hero-visual {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border: 1px solid var(--border);
+            background: var(--white);
+        }
+
+        .visual-titlebar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .visual-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .visual-dot:first-child { background: var(--orange-light); }
+
+        .visual-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-left: 8px;
+        }
+
+        .visual-body { padding: 18px; }
+
+        .visual-row {
+            display: grid;
+            grid-template-columns: 86px 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .visual-row:last-child { margin-bottom: 0; }
+
+        .visual-clinic {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+        }
+
+        .visual-chip {
+            height: 26px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--muted);
+        }
+
+        .visual-chip.filled-md { background: rgba(194, 65, 12, 0.1); border-color: rgba(194, 65, 12, 0.3); color: var(--orange); }
+        .visual-chip.filled-np { background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.3); color: var(--orange-mid); }
+        .visual-chip.filled-pa { background: rgba(251, 146, 60, 0.14); border-color: rgba(251, 146, 60, 0.4); color: #b45309; }
+        .visual-chip.alert { border: 1px dashed var(--orange-light); color: var(--orange-light); background: var(--white); }
+
+        /* STATS BAND */
+        .stats {
+            background: var(--orange);
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 4px;
+            font-family: 'DM Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .feature-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--orange-mid);
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .feature-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        /* ARCHITECTURE */
+        .arch-list {
+            max-width: 760px;
+            margin: 48px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .arch-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .arch-item:last-child { border-bottom: none; }
+
+        .arch-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--orange-light);
+            line-height: 1.3;
+        }
+
+        .arch-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--orange);
+            margin-bottom: 6px;
+        }
+
+        .arch-desc {
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        /* TECH STACK */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .stack-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .stack-card-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: var(--orange);
+            margin-bottom: 6px;
+        }
+
+        .stack-card-sub {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+        }
+
+        .stack-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stack-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stack-table tr:last-child { border-bottom: none; }
+
+        .stack-table td {
+            padding: 11px 0;
+            vertical-align: top;
+            font-size: 0.87rem;
+        }
+
+        .stack-table td:first-child {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            width: 38%;
+            padding-right: 14px;
+        }
+
+        .stack-table td:last-child {
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        /* ROLE */
+        .role-quote {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .role-quote blockquote {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            color: var(--charcoal);
+            margin-bottom: 28px;
+        }
+
+        .role-attribution {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .role-attribution strong {
+            display: block;
+            color: var(--charcoal);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .role-detail {
+            max-width: 720px;
+            margin: 40px auto 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 48px 40px;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover { color: var(--orange); }
+
+        .footer-copyright {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 48px 24px;
+                gap: 40px;
+            }
+
+            .hero h1 { font-size: 2.3rem; }
+
+            .container { padding: 0 24px; }
+
+            .features-grid,
+            .stack-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats { gap: 36px; padding: 36px 24px; }
+
+            .section-title { font-size: 2rem; }
+
+            nav { padding: 10px 16px; }
+
+            .nav-links { gap: 16px; }
+
+            .nav-links .nav-section-link { display: none; }
+
+            .nav-logo { display: none; }
+
+            .home-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="/" class="home-btn">&larr; Return Home</a>
+            <a href="https://equityhealthsystems.com/" target="_blank" rel="noopener" class="nav-logo">Equity Health Systems</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features" class="nav-section-link">Features</a></li>
+            <li><a href="#architecture" class="nav-section-link">Architecture</a></li>
+            <li><a href="#stack" class="nav-section-link">Tech Stack</a></li>
+            <li><a href="#role" class="nav-section-link">My Role</a></li>
+            <li><a href="https://equityhealthsystems.com/" target="_blank" rel="noopener" class="btn">Visit Site &rarr;</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div>
+            <span class="hero-eyebrow">Production SaaS &mdash; Healthcare Operations</span>
+            <h1>A scheduling platform built <em>from the inside out</em></h1>
+            <p class="hero-sub">
+                Equity Health Systems is a multi-tenant provider scheduling platform built for a real
+                healthcare organization. Administrators and schedulers manage daily provider assignments
+                across clinics via drag-and-drop, define recurring schedule cadences, track coverage and
+                understaffing, manage PTO, assign students to preceptors, and send daily and weekly
+                schedule emails to staff &mdash; all from one place.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-row">
+                    <span class="hero-meta-label">Role</span>
+                    <span class="hero-meta-value">Lead Software Engineer &mdash; full-stack ownership</span>
+                </div>
+                <div class="hero-meta-row">
+                    <span class="hero-meta-label">Company</span>
+                    <span class="hero-meta-value"><a href="https://equityhealthsystems.com/" target="_blank" rel="noopener">equityhealthsystems.com</a></span>
+                </div>
+                <div class="hero-meta-row">
+                    <span class="hero-meta-label">Access</span>
+                    <span class="private-badge">Private client deployment &mdash; source not public</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+            <div class="visual-titlebar">
+                <span class="visual-dot"></span>
+                <span class="visual-dot"></span>
+                <span class="visual-dot"></span>
+                <span class="visual-label">Today's Providers</span>
+            </div>
+            <div class="visual-body">
+                <div class="visual-row">
+                    <span class="visual-clinic">Clinic A</span>
+                    <span class="visual-chip filled-md">MD</span>
+                    <span class="visual-chip filled-np">NP</span>
+                    <span class="visual-chip filled-pa">PA</span>
+                </div>
+                <div class="visual-row">
+                    <span class="visual-clinic">Clinic B</span>
+                    <span class="visual-chip filled-md">DO</span>
+                    <span class="visual-chip filled-pa">PA</span>
+                    <span class="visual-chip alert">+ assign</span>
+                </div>
+                <div class="visual-row">
+                    <span class="visual-clinic">Clinic C</span>
+                    <span class="visual-chip filled-np">NP</span>
+                    <span class="visual-chip filled-md">MD</span>
+                    <span class="visual-chip">&mdash;</span>
+                </div>
+                <div class="visual-row">
+                    <span class="visual-clinic">Who's Out</span>
+                    <span class="visual-chip">PTO</span>
+                    <span class="visual-chip">PTO</span>
+                    <span class="visual-chip">&mdash;</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS BAND -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-num">~60</div>
+            <div class="stat-label">React components</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">24</div>
+            <div class="stat-label">Postgres tables</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">38</div>
+            <div class="stat-label">Database functions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Deno edge functions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">3-tier</div>
+            <div class="stat-label">Role model + RLS</div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+        <div class="container">
+            <span class="eyebrow">What It Does</span>
+            <h2 class="section-title">Everything a scheduling team needs</h2>
+            <p class="section-sub">
+                Built for the real complexity of coordinating clinical providers, support staff,
+                and students across multiple clinic locations.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-num">[01]</span>
+                    <h3 class="feature-title">Today's Providers</h3>
+                    <p class="feature-desc">
+                        Drag-and-drop daily assignment board &mdash; unscheduled providers on the left, clinic
+                        grid on the right, color-coded by provider title (MD, DO, NP, PA), with a
+                        "Who's Out" PTO section.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[02]</span>
+                    <h3 class="feature-title">Weekly &amp; Monthly Calendar</h3>
+                    <p class="feature-desc">
+                        Providers as rows, days as columns, with red-border alerts for understaffed clinics
+                        and click-through to daily detail. Monthly tiles show provider counts, understaffing
+                        alerts, and clinic closure management.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[03]</span>
+                    <h3 class="feature-title">Schedule Planner</h3>
+                    <p class="feature-desc">
+                        Recurring cadence builder with stacking and priority overrides &mdash; define a
+                        provider's repeating schedule once and let the platform project it forward.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[04]</span>
+                    <h3 class="feature-title">Coverage Insights</h3>
+                    <p class="feature-desc">
+                        PTO trends, clinic coverage summaries, and coverage alerts that surface staffing
+                        gaps before they become problems.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[05]</span>
+                    <h3 class="feature-title">Student Preceptorship</h3>
+                    <p class="feature-desc">
+                        Per-day assignment of trainees to providers across sites, included automatically
+                        in daily schedule emails.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[06]</span>
+                    <h3 class="feature-title">Email Distribution</h3>
+                    <p class="feature-desc">
+                        One-click daily and weekly schedule emails to providers, support staff, and
+                        students, with per-recipient delivery status. Powered by Resend.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[07]</span>
+                    <h3 class="feature-title">Settings &amp; Admin</h3>
+                    <p class="feature-desc">
+                        Clinic configuration (min/max providers, operating hours), provider, staff, and
+                        student management, team invitations with email, role management, and audit access.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">[08]</span>
+                    <h3 class="feature-title">Demo Mode</h3>
+                    <p class="feature-desc">
+                        Unauthenticated visitors can explore the full UI seeded with mock data &mdash; zero
+                        persistence and zero backend access.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="section-alt" id="architecture">
+        <div class="container">
+            <span class="eyebrow">Under The Hood</span>
+            <h2 class="section-title">Architecture highlights</h2>
+            <p class="section-sub">
+                A React single-page application backed entirely by Supabase &mdash; Postgres with
+                row-level security, Auth, and Deno edge functions.
+            </p>
+            <div class="arch-list">
+                <div class="arch-item">
+                    <span class="arch-num">01</span>
+                    <div>
+                        <h3 class="arch-title">Multi-tenancy</h3>
+                        <p class="arch-desc">
+                            Organizations as the tenant boundary. Users can belong to multiple organizations
+                            and switch between them in-session, with membership, invitations, and an
+                            active-org model enforced at the database layer.
+                        </p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-num">02</span>
+                    <div>
+                        <h3 class="arch-title">Three-tier RBAC</h3>
+                        <p class="arch-desc">
+                            Admin (full control), support staff scheduler (manage schedules, providers, and
+                            coverage), and viewer (read-only, linked to a specific provider for a
+                            personal-schedule view). Tabs and actions are role-gated in the UI and enforced
+                            by RLS in the database.
+                        </p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-num">03</span>
+                    <div>
+                        <h3 class="arch-title">Recurring schedule engine</h3>
+                        <p class="arch-desc">
+                            Per-provider recurring "cadences" (date range, days of week, location, times)
+                            that stack by priority. Recurring assignments are virtualized client-side &mdash;
+                            synthetic assignments generated on the fly per date, with database-backed
+                            exception rows for one-off deletions.
+                        </p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-num">04</span>
+                    <div>
+                        <h3 class="arch-title">Undo system</h3>
+                        <p class="arch-desc">
+                            Context-level undo stack backed by a database table and RPCs, with a one-hour
+                            expiry window for schedule edits.
+                        </p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-num">05</span>
+                    <div>
+                        <h3 class="arch-title">Security hardening</h3>
+                        <p class="arch-desc">
+                            Strict Content Security Policy, no public or anonymous data surface, RLS policy
+                            linting tooling, and server-controlled email link generation so callers can't
+                            inject URLs. Each edge function validates the caller's JWT in-code and performs
+                            role and org checks before operating with a service-role client.
+                        </p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-num">06</span>
+                    <div>
+                        <h3 class="arch-title">Staff-focused by design</h3>
+                        <p class="arch-desc">
+                            The platform schedules staff, not patients &mdash; it stores no patient health
+                            information, keeping it simple, lightweight, and easy to adopt.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="section" id="stack">
+        <div class="container">
+            <span class="eyebrow">Tech Stack</span>
+            <h2 class="section-title">How it's built</h2>
+            <p class="section-sub">
+                Full-stack TypeScript with a lean, deliberate set of tools &mdash; no routing library,
+                no heavyweight state management.
+            </p>
+            <div class="stack-grid">
+                <div class="stack-card">
+                    <h3 class="stack-card-title">Frontend</h3>
+                    <p class="stack-card-sub">~60 React components across four main tabs: Today's Providers, Calendar, Schedule Planner, and Settings.</p>
+                    <table class="stack-table">
+                        <tr><td>Framework</td><td>React 18 (function components + hooks)</td></tr>
+                        <tr><td>Language</td><td>TypeScript (strict mode)</td></tr>
+                        <tr><td>Build tool</td><td>Vite 5</td></tr>
+                        <tr><td>Styling</td><td>Tailwind CSS 3 (utility classes only)</td></tr>
+                        <tr><td>Icons</td><td>lucide-react</td></tr>
+                        <tr><td>Routing</td><td>None &mdash; state-driven conditional rendering</td></tr>
+                        <tr><td>State</td><td>Three React contexts (Auth, Schedule, Finance)</td></tr>
+                        <tr><td>Linting</td><td>ESLint flat config + typescript-eslint</td></tr>
+                    </table>
+                </div>
+                <div class="stack-card">
+                    <h3 class="stack-card-title">Backend (Supabase)</h3>
+                    <p class="stack-card-sub">Postgres, Auth, and edge functions with full organization-level data isolation.</p>
+                    <table class="stack-table">
+                        <tr><td>Database</td><td>Postgres &mdash; 24 tables, 38 functions, 11 triggers</td></tr>
+                        <tr><td>Security</td><td>Row-Level Security on all tables</td></tr>
+                        <tr><td>Auth</td><td>Supabase Auth (JWT-based sessions)</td></tr>
+                        <tr><td>Edge functions</td><td>5 Deno functions (team management, roles, invitations, email blasts)</td></tr>
+                        <tr><td>Email</td><td>Transactional email via Resend</td></tr>
+                        <tr><td>Function auth</td><td>In-code JWT validation + role/org checks</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY ROLE -->
+    <section class="section-alt" id="role">
+        <div class="container">
+            <span class="eyebrow">My Role</span>
+            <h2 class="section-title">Full-stack ownership</h2>
+            <div class="role-quote">
+                <blockquote>
+                    "Not a tutorial or a demo &mdash; a production system serving a real healthcare
+                    organization, owned end to end."
+                </blockquote>
+                <p class="role-attribution">
+                    <strong>John Rogan</strong>
+                    Lead Software Engineer, Equity Health Systems
+                </p>
+            </div>
+            <p class="role-detail">
+                I own the system end to end: Postgres schema design and the RLS security model,
+                the recurring-schedule and undo engines, the React UI, and the email infrastructure.
+                Every layer &mdash; from database triggers to drag-and-drop interactions &mdash; was designed,
+                built, and hardened for daily use by a real operations team.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <nav class="footer-nav">
+            <a href="/">Home</a>
+            <a href="/ehs/">EHS</a>
+            <a href="/articles/">Articles</a>
+            <a href="/projects/">Projects</a>
+            <a href="/blog/">Blog</a>
+            <a href="/eecs494/">EECS494</a>
+            <a href="https://github.com/JohnRogan" target="_blank">GitHub</a>
+        </nav>
+        <p class="footer-copyright">&copy; <span class="footer-year">2026</span> John Rogan</p>
+    </footer>
+
+    <script>
+        document.querySelector('.footer-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

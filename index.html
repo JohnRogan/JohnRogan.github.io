@@ -317,6 +317,7 @@
         }
         
         /* Card accent colors */
+        .card-ehs { --card-accent: #f97316; }
         .card-eecs { --card-accent: #ff6b5b; }
         .card-articles { --card-accent: #d4a574; }
         .card-blog { --card-accent: #7affc7; }
@@ -485,19 +486,26 @@
             </p>
         </div>
         
-        <!-- Pages Grid - Order: Dev, Game, Term, News -->
+        <!-- Pages Grid - Order: EHS, News, Dev, Term, Game -->
         <div class="pages-grid">
+            <a href="/ehs/" class="page-card card-ehs">
+                <div class="card-icon">[EHS]</div>
+                <h2 class="card-title">Equity Health Systems</h2>
+                <p class="card-description">Production scheduling platform for community health centers, where I serve as Lead Software Engineer.</p>
+                <div class="card-arrow">&gt;</div>
+            </a>
+            
+            <a href="/articles/" class="page-card card-articles">
+                <div class="card-icon">[NEWS]</div>
+                <h2 class="card-title">Articles</h2>
+                <p class="card-description">Published writings across Substack and The Michigan Daily in classic print style.</p>
+                <div class="card-arrow">&gt;</div>
+            </a>
+            
             <a href="/projects/" class="page-card card-projects">
                 <div class="card-icon">[DEV]</div>
                 <h2 class="card-title">Personal Projects</h2>
                 <p class="card-description">Independent creations and side projects I've built.</p>
-                <div class="card-arrow">&gt;</div>
-            </a>
-            
-            <a href="/eecs494/" class="page-card card-eecs">
-                <div class="card-icon">[GAME]</div>
-                <h2 class="card-title">EECS494</h2>
-                <p class="card-description">Game development course portfolio featuring Unity projects and interactive experiences.</p>
                 <div class="card-arrow">&gt;</div>
             </a>
             
@@ -508,10 +516,10 @@
                 <div class="card-arrow">&gt;</div>
             </a>
             
-            <a href="/articles/" class="page-card card-articles">
-                <div class="card-icon">[NEWS]</div>
-                <h2 class="card-title">Articles</h2>
-                <p class="card-description">Published writings across Substack and The Michigan Daily in classic print style.</p>
+            <a href="/eecs494/" class="page-card card-eecs">
+                <div class="card-icon">[GAME]</div>
+                <h2 class="card-title">EECS494</h2>
+                <p class="card-description">Game development course portfolio featuring Unity projects and interactive experiences.</p>
                 <div class="card-arrow">&gt;</div>
             </a>
         </div>
@@ -520,10 +528,11 @@
     <footer>
         <nav class="footer-nav">
             <a href="/">Home</a>
-            <a href="/projects/">Projects</a>
-            <a href="/eecs494/">EECS494</a>
-            <a href="/blog/">Blog</a>
+            <a href="/ehs/">EHS</a>
             <a href="/articles/">Articles</a>
+            <a href="/projects/">Projects</a>
+            <a href="/blog/">Blog</a>
+            <a href="/eecs494/">EECS494</a>
             <a href="https://github.com/JohnRogan" target="_blank">GitHub</a>
         </nav>
         <p>&copy; <span class="footer-year">2026</span> John Rogan</p>

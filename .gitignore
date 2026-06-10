@@ -2,3 +2,6 @@
 .DS_Store
 **/.DS_Store
 
+# Internal context docs
+EQUITY_HEALTH_SYSTEMS_PORTFOLIO_CONTEXT.md
+
